@@ -1,8 +1,9 @@
 #!/usr/bin/env node
-var hogan = require('hogan.js')
-  , fs    = require('fs')
-  , prod  = process.argv[2] == 'production'
-  , title = 'Bootstrap'
+var hogan     = require('hogan.js')
+  , fs        = require('fs')
+  , prod      = process.argv[2] == 'production'
+  , title     = 'Bootstrap'
+  , build_dir = 'mockup'
 
 var layout, pages
 
@@ -46,5 +47,5 @@ pages.forEach(function (name) {
     body: page
   })
 
-  fs.writeFileSync(__dirname + '/../' + name.replace(/mustache$/, 'html'), page, 'utf-8')
+  fs.writeFileSync(__dirname + '/../' + build_dir + '/' + name.replace(/mustache$/, 'html'), page, 'utf-8')
 })
