@@ -8,23 +8,23 @@ var hogan     = require('hogan.js')
 var layout, pages
 
 // compile layout template
-layout = fs.readFileSync(__dirname + '/../templates/layout.mustache', 'utf-8')
+layout = fs.readFileSync(__dirname + '/templates/layout.mustache', 'utf-8')
 layout = hogan.compile(layout, { sectionTags: [{o:'_i', c:'i'}] })
 
 // compile navigation template
-nav = fs.readFileSync(__dirname + '/../templates/nav.mustache', 'utf-8')
+nav = fs.readFileSync(__dirname + '/templates/nav.mustache', 'utf-8')
 nav = hogan.compile(nav, { sectionTags: [{o:'_i', c:'i'}] })
 
 
 // retrieve pages
-pages = fs.readdirSync(__dirname + '/../templates/pages')
+pages = fs.readdirSync(__dirname + '/templates/pages')
 
 // iterate over pages
 pages.forEach(function (name) {
 
   if (!name.match(/\.mustache$/)) return
 
-  var page = fs.readFileSync(__dirname  + '/../templates/pages/' + name, 'utf-8')
+  var page = fs.readFileSync(__dirname  + '/templates/pages/' + name, 'utf-8')
     , context = {}
 
   context[name.replace(/\.mustache$/, '')] = 'active'
