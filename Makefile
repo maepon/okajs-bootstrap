@@ -1,4 +1,4 @@
-BOOTSTRAP = ./mockup/css/bootstrap.css
+BOOTSTRAP = ./mockup/css/bootstrap.min.css
 BOOTSTRAP_LESS = ./less/bootstrap.less
 BOOTSTRAP_RESPONSIVE = ./mockup/css/bootstrap-responsive.css
 BOOTSTRAP_RESPONSIVE_LESS = ./less/responsive.less
@@ -18,8 +18,8 @@ build:
 	@./node_modules/.bin/jshint js/*.js --config js/.jshintrc
 	@./node_modules/.bin/jshint js/tests/unit/*.js --config js/.jshintrc
 	@echo "Running JSHint on javascript...             ${CHECK} Done"
-	@./node_modules/.bin/recess --compile ${BOOTSTRAP_LESS} > ${BOOTSTRAP}
-	@./node_modules/.bin/recess --compile ${BOOTSTRAP_RESPONSIVE_LESS} > ${BOOTSTRAP_RESPONSIVE}
+	@lessc -x ${BOOTSTRAP_LESS} > ${BOOTSTRAP}
+	@lessc -x ${BOOTSTRAP_RESPONSIVE_LESS} > ${BOOTSTRAP_RESPONSIVE}
 	@echo "Compiling LESS with Recess...               ${CHECK} Done"
 	@node hogan/
 	@cp img/* mockup/img/
